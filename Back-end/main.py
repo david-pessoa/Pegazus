@@ -87,7 +87,7 @@ print("Produtos com preço maior que 30:", produtos) #Imprime
 #Os produtos por sua vez, estão numa lista, então podemos iterá-los num segundo laço for aninhado
 #Cada produto é representado por um dicionário, então basta acessar seu preço escrevendo: produto["preço"]
 
-#Sendo assim, posso dizer que adotei essa forma por ser mais intuitiva, do que tentar utilizar a biblioteca pandas
+#Sendo assim, posso dizer que adotei essa forma por ser mais intuitiva, do que tentar utilizar a biblioteca pandas por exemplo
 
 
 
@@ -105,23 +105,50 @@ responsejson = {
         {"id": 2, "nome": "Produto B", "preço": 19.99}
     ]
 }
-lista_produtos = responsejson["produtos"]
+lista_produtos = responsejson["produtos"] #Obtém lista com os produtos da loja
 
-preco = 0
-for produto in lista_produtos:
-    if produto["nome"] == "Produto B":
-        preco = produto["preço"]
+precoB = 0 #Coloca o preço de B como 0
+
+for produto in lista_produtos: #Para cada produto na lista,
+    if produto["nome"] == "Produto B": #Verifica se o nome é "Produto B"
+        precoB = produto["preço"] #Pega o preço e interrompe a busca
         break
 
-if preco == 0:
+if precoB == 0: #Se não encontrar nenhum produtoB
     print("Produto B não foi encontrado")
 
-print("Preço do produto B:", preco)
+print("Preço do produto B:", precoB)
+
+#Decidi utilizar esta solução, pois ela é a mesma estratégia utilizada no exercício anterior.
+#Logo, também é mais intuitiva além de já estar mais acostumado.
 
 #3- Ordene a lista abaixo em ordem crescente
 #explique detalhadamente por que escolheu essa solução e não outra
 
 lista = [5,8,3,0,8,1,9,10,20,30]
+
+def partition(lista, inicio, fim):
+    pivot = lista[fim]
+    i = inicio
+    for j in range(inicio, fim):
+        if lista[j] <= pivot:
+            lista[j], lista[i] = lista[i], lista[j]
+            i += 1
+    lista[i], lista[fim] = lista[fim], lista[i]
+    return i
+
+def QuickSort(vetor, inicio = 0, fim = None):
+    if fim is None:
+        fim = len(vetor) - 1
+    if inicio < fim:
+        pivot_pos = partition(vetor, inicio, fim)
+        QuickSort(vetor, inicio, pivot_pos - 1)
+        QuickSort(vetor, pivot_pos + 1, fim)
+    return vetor
+
+lista_ordenada = QuickSort(lista)
+print("Lista ordenada:", lista_ordenada)
+
 
 
 
