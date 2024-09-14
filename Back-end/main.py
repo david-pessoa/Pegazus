@@ -11,6 +11,8 @@
 
 #1- usando o json abaixo, retire somente os produtos em que o preço seja maior do que 30 Reais 
 #Explique detalhadamente por que voce decidiu essa solução e não outra
+import pandas as pd 
+
 response = [
     {
         "nome": "Loja Exemplo 1",
@@ -69,7 +71,23 @@ response = [
     }
 ]
 
+produtos = [] # Lista para armazenar os nomes dos produtos com preço maior que 30
+for loja in response: 
+    
+    for produto in loja["produtos"]: #Para cada loja, será avaliado cada produto nela
 
+        if produto["preço"] > 30: # Se o preço do produto é maior que 30, então adiciona seu nome na lista
+            produtos.append(produto["nome"])
+
+print("Produtos com preço maior que 30:", produtos) #Imprime
+
+#Descrição da resolução:
+#Como as lojas estão dentro de uma lista, posso iterar entre elas com o laço for,
+#Cada loja é representada por um dicionário, então basta acessar os produtos escrevendo: loja["produtos"]
+#Os produtos por sua vez, estão numa lista, então podemos iterá-los num segundo laço for aninhado
+#Cada produto é representado por um dicionário, então basta acessar seu preço escrevendo: produto["preço"]
+
+#Sendo assim, posso dizer que adotei essa forma por ser mais intuitiva, do que tentar utilizar a biblioteca pandas
 
 
 
@@ -87,7 +105,18 @@ responsejson = {
         {"id": 2, "nome": "Produto B", "preço": 19.99}
     ]
 }
+lista_produtos = responsejson["produtos"]
 
+preco = 0
+for produto in lista_produtos:
+    if produto["nome"] == "Produto B":
+        preco = produto["preço"]
+        break
+
+if preco == 0:
+    print("Produto B não foi encontrado")
+
+print("Preço do produto B:", preco)
 
 #3- Ordene a lista abaixo em ordem crescente
 #explique detalhadamente por que escolheu essa solução e não outra
