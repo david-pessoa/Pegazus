@@ -81,15 +81,6 @@ for loja in response:
 
 print("Produtos com preço maior que 30:", produtos) #Imprime
 
-#Descrição da resolução:
-#Como as lojas estão dentro de uma lista, posso iterar entre elas com o laço for,
-#Cada loja é representada por um dicionário, então basta acessar os produtos escrevendo: loja["produtos"]
-#Os produtos por sua vez, estão numa lista, então podemos iterá-los num segundo laço for aninhado
-#Cada produto é representado por um dicionário, então basta acessar seu preço escrevendo: produto["preço"]
-
-#Sendo assim, posso dizer que adotei essa forma por ser mais intuitiva, do que tentar utilizar a biblioteca pandas por exemplo
-
-
 
 #2-Use o JSON abaixo para capturar o preço do produto B
 #explique detalhadamente por que escolheu essa solução e não outra
@@ -119,54 +110,84 @@ if precoB == 0: #Se não encontrar nenhum produtoB
 
 print("Preço do produto B:", precoB)
 
-#Decidi utilizar esta solução, pois ela é a mesma estratégia utilizada no exercício anterior.
-#Logo, também é mais intuitiva além de já estar mais acostumado.
 
 #3- Ordene a lista abaixo em ordem crescente
 #explique detalhadamente por que escolheu essa solução e não outra
 
 lista = [5,8,3,0,8,1,9,10,20,30]
 
-def partition(lista, inicio, fim):
-    pivot = lista[fim]
-    i = inicio
-    for j in range(inicio, fim):
-        if lista[j] <= pivot:
-            lista[j], lista[i] = lista[i], lista[j]
-            i += 1
-    lista[i], lista[fim] = lista[fim], lista[i]
-    return i
+def Merge(inicio, fim, meio, vetor):
+    left = vetor[inicio:meio] #Divide o vetor em duas partes (left, right)
+    right = vetor[meio:fim]
+    top_left, top_right = 0, 0 #Variáveis para varrer cada partes do menor ao maior número
+    #O topo é o menor número de cada sublista, portanto
 
-def QuickSort(vetor, inicio = 0, fim = None):
-    if fim is None:
-        fim = len(vetor) - 1
-    if inicio < fim:
-        pivot_pos = partition(vetor, inicio, fim)
-        QuickSort(vetor, inicio, pivot_pos - 1)
-        QuickSort(vetor, pivot_pos + 1, fim)
-    return vetor
+    for k in range(inicio, fim): #Para cada posição k no vetor:
 
-lista_ordenada = QuickSort(lista)
+        if top_left >= len(left): #Se todos os números de left já foram inseridos no vetor
+            vetor[k] = right[top_right] #Coloca o número no topo de right no vetor
+            top_right += 1
+
+        elif top_right >= len(right): #Se todos os números de right já foram inseridos no vetor
+            vetor[k] = left[top_left] #Coloca o número no topo de letf no vetor
+            top_left += 1
+        
+        elif right[top_right] > left[top_left]: #Se left possui o menor topo
+            vetor[k] = left[top_left] #Coloca o número no topo de left no vetor
+            top_left += 1 
+
+        else: #Se right possui o menor topo
+            vetor[k] = right[top_right] #Coloca o número no topo de right no vetor
+            top_right += 1
+
+    return vetor #Retorna vetor ordenado
+      
+def MergeSort(vetor, inicio, fim):
+    if fim - inicio > 1: # Se a sublista contém mais de um elemento:
+        meio = (inicio + fim) // 2 #Calcula o índice no meio da lista
+        MergeSort(vetor, meio, fim) # Divide a lista em duas e aplica o MergeSort recursivamente para as duas partes
+        MergeSort(vetor, inicio, meio)
+        return Merge(inicio, fim, meio, vetor) #Junta as sublistas ordenadas
+    else:
+        return vetor #Se a sublista contém apenas um elemento retorna a sublista e encerra a recursão
+
+def StartMerge(vetor): #Obtém primeiro e último índices da lista para poder passá-los 
+    fim = len(vetor)   #como argumento para a função principal
+    inicio = 0
+    return MergeSort(vetor, inicio, fim)
+
+lista_ordenada = StartMerge(lista)
 print("Lista ordenada:", lista_ordenada)
-
-
-
 
 
 #4-Retire todos os espaços em branco, crie uma nova lista e adicione esses itens nela
 
-
 lista = ["   joao   ","   maria   ","  joana  "]
+new_list = []
 
+for item in lista:
+    new_list.append(item.strip()) # Para cada string da lista, adiciona sua versão sem espaços em branco
+
+print("Lista sem espaços em branco:", new_list)
 
 #5-Retire o segundo item dessa lista e imprima ela:
 
 lista = [1,2,3,4,5,6]
 
+nova_lista = lista[0:1] + lista[2:] #Elimina o segundo item dividindo a lista em duas partes e concatenando-as
+
+print("Lista sem o segundo elemento:", nova_lista)
 
 #6-substitua todos os "joao" da lista por "maria"
 
-lista = ["joao", "ana", "joana","joao", "ricardo", "joao"]
+lista_nomes = ["joao", "ana", "joana","joao", "ricardo", "joao"]
+
+for i in range(len(lista_nomes)):
+    if lista_nomes[i] == "joao":
+        lista_nomes[i] = "maria"
+
+print("Lista com o nome 'joao' substituído por 'maria':", nova_lista)
+
 
 #7-criar um loop while em Python que itera sobre os itens de uma lista e imprime os itens enquanto o valor de uma variável é menor ou igual a 5. Após imprimir cada item, o valor da variável é incrementado em 1
 #explique detalhadamente por que escolheu essa solução e não outra
