@@ -250,22 +250,62 @@ if resposta.status_code == 200: # Se obter código 200 (êxito), obtém dados
 else:
     print(f"Erro: {resposta.status_code}") # Se obtém outro código, exibe erro
 
-lista_pessoas = []
-for person in dados:
-    name = person["name"]
+dict_pessoas = {} # Cria dicionário, em que cada item é uma pessoa, sendo a chave o nome e o valor associado uma lista com as demais informações
+for pessoa in dados:
+    nome = pessoa["name"] #Obtém dados de cada pesoa
+    username = pessoa["username"]
+    email = pessoa["email"]
+    rua = pessoa["address"]["street"]
+    numero = pessoa["phone"]
+
+    dict_pessoas[nome] = [username, email, rua, numero] #Coloca no dicionário
+
+for nome, info in dict_pessoas.items(): # Imprime
+    print(f"Nome: {nome}, Username: {info[0]}, Email: {info[1]}, Rua: {info[2]}, Número: {info[3]}")
 
 print()
 #10-crie uma lista e adicione um item novo a ela utilizando a metodologia FIFO (fila)
+class Fila: # Cria a estrutura de dados fila
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self): # Verifica se fila está vazia
+        return self.items == []
+
+    def enqueue(self, item): # Adiciona item à fila
+        self.items.insert(0,item)
+
+    def dequeue(self): #Remove item da fila
+        return self.items.pop()
+
+    def size(self): #Tamanho da lista
+        return len(self.items)
+    
+fila = Fila()
+fila.enqueue(3) # Adiciona 3 à fila
 
 #11-crie uma lista e adicione um item novo a ela utilizando a metodolofia LIFO (pilha)
+class Pilha: # Cria a estrutura de dados pilha
+     def __init__(self):
+         self.items = []
 
+     def isEmpty(self): # Verifica se pilha está vazia
+         return self.items == []
 
-#DESAFIO!!
+     def push(self, item): # Adiciona item à pilha
+         self.items.append(item)
 
-#crie uma interface de banco, o programa deve utilizar POO, a classe deve ter os atributos id, nome, cpf e saldo , aonde o saldo deve ser iniciado em 0, e o id deve ser autoicremental. a interfaçe deve permitir a criação de uma conta, e a realização das operações de saque e deposito do saldo da conta
+     def pop(self): # Remove item da pilha
+         return self.items.pop()
 
+     def peek(self): # Lê item no topo da pilha
+         return self.items[len(self.items)-1]
 
+     def size(self): #Tamanho da pilha
+         return len(self.items)
 
+pilha = Pilha()
+pilha.push(3) # Adiciona 3 à pilha
 
 
 

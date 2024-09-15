@@ -17,5 +17,6 @@ Utilizei esta solução, por ser mais intuitiva e também porque é a maneira ma
 Utilizei esta solução, pois, primeiro necessitava obter os dados através da API por meio de uma requisição GET HTTP. Não poderia ser uma requisição do tipo POST, por exemplo, já que o intuito não é enviar dados para o servidor e sim obter dados dele. Então, utilizei a função `get()` da biblioteca `requests` para obter a resposta do servidor e depois extrair o json com os dados. Após isso, precisei apenas acessar os dados iterando a lista `dados`. Para cada task, era verificado o valor correspondente à chave `completed`, se fosse igual a True, era contada como completa, caso contrário como pendente.
 
 ## Exercício 9
+Utilizei a mesma forma para obter os dados através da API pelos mesmos motivos citados no exercício anterior. Já para o parsing dos dados, decidi que a melhor forma seria guardar as pessoas e suas informações num dicionário, sendo a chave os nomes das pessoas. Poderia ter usado o ID, mas o enunciado não permitiu. As outras informações sobre cada pessoa ficaram numa lista, que constituía o valor da chave no dicionário. Preferi uma lista do que outro dicionário para melhorar a legibilidade do código e seu entendimento.
 
 ## Desafio
