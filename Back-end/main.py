@@ -12,6 +12,7 @@
 #1- usando o json abaixo, retire somente os produtos em que o preço seja maior do que 30 Reais 
 #Explique detalhadamente por que voce decidiu essa solução e não outra
 import pandas as pd 
+import requests
 
 response = [
     {
@@ -78,12 +79,13 @@ for loja in response:
 
         if produto["preço"] > 30: # Se o preço do produto é maior que 30, então adiciona seu nome na lista
             produtos.append(produto["nome"])
-
+print("Exercício 1:")
 print("Produtos com preço maior que 30:", produtos) #Imprime
-
+print()
 
 #2-Use o JSON abaixo para capturar o preço do produto B
 #explique detalhadamente por que escolheu essa solução e não outra
+print("Exercício 2:")
 
 responsejson = {
     "nome": "Loja Exemplo",
@@ -109,7 +111,7 @@ if precoB == 0: #Se não encontrar nenhum produtoB
     print("Produto B não foi encontrado")
 
 print("Preço do produto B:", precoB)
-
+print()
 
 #3- Ordene a lista abaixo em ordem crescente
 #explique detalhadamente por que escolheu essa solução e não outra
@@ -157,8 +159,10 @@ def StartMerge(vetor): #Obtém primeiro e último índices da lista para poder p
     return MergeSort(vetor, inicio, fim)
 
 lista_ordenada = StartMerge(lista)
-print("Lista ordenada:", lista_ordenada)
 
+print("Exercício 3:")
+print("Lista ordenada:", lista_ordenada)
+print()
 
 #4-Retire todos os espaços em branco, crie uma nova lista e adicione esses itens nela
 
@@ -168,7 +172,9 @@ new_list = []
 for item in lista:
     new_list.append(item.strip()) # Para cada string da lista, adiciona sua versão sem espaços em branco
 
+print("Exercício 4:")
 print("Lista sem espaços em branco:", new_list)
+print()
 
 #5-Retire o segundo item dessa lista e imprima ela:
 
@@ -176,7 +182,9 @@ lista = [1,2,3,4,5,6]
 
 nova_lista = lista[0:1] + lista[2:] #Elimina o segundo item dividindo a lista em duas partes e concatenando-as
 
+print("Exercício 5:")
 print("Lista sem o segundo elemento:", nova_lista)
+print()
 
 #6-substitua todos os "joao" da lista por "maria"
 
@@ -186,23 +194,70 @@ for i in range(len(lista_nomes)):
     if lista_nomes[i] == "joao":
         lista_nomes[i] = "maria"
 
+print("Exercício 6:")
 print("Lista com o nome 'joao' substituído por 'maria':", nova_lista)
-
+print()
 
 #7-criar um loop while em Python que itera sobre os itens de uma lista e imprime os itens enquanto o valor de uma variável é menor ou igual a 5. Após imprimir cada item, o valor da variável é incrementado em 1
 #explique detalhadamente por que escolheu essa solução e não outra
+print("Exercício 7:")
+
+lista_while = [1,2,3,4,5,6]
+i = 0
+while lista_while[i] <= 5:
+    print(lista_while[i])
+    i += 1
+
+print()
 
 #8-usando a biblioteca requests, faça uma requisição http para o endpoint https://jsonplaceholder.typicode.com/todos. cada objeto dentro do json possui a chave "completed". que indica se a task foi completada ou não. Faça uma função que trate a resposta e retorne a quantidade de tasks completadas, e a quantidade de tasks pendentes
 #explique detalhadamente por que escolheu essa solução e não outra
+print("Exercício 8:")
+
+url = "https://jsonplaceholder.typicode.com/todos"
+resposta = requests.get(url) #Envia uma solicitação HTTP GET ao servidor
+
+if resposta.status_code == 200: # Se obter código 200 (êxito), obtém dados
+    dados = resposta.json()
+else:
+    print(f"Erro: {resposta.status_code}") # Se obtém outro código, exibe erro
+
+completadas = 0
+pendentes = 0
+
+for task in dados:
+    if task["completed"] == True:
+        completadas += 1
+    else:
+        pendentes += 1
+
+print(f"Número de tarefas completadas: {completadas}")
+print(f"Número de tarefas pendentes: {pendentes}")
+
+print()
 
 #9-faça uma requisição em uma API  https://jsonplaceholder.typicode.com/users e com os dados retornados 
 # faça um parsing de dados e retire  o nome, username, email, rua, numero
 #explique detalhadamente por que escolheu essa solução e não outra
+print("Exercício 9:")
 
+url = "https://jsonplaceholder.typicode.com/users"
 
-#10-crie uma lista e adicione um item novo a ela utilizando a metodologia FIFO
+resposta = requests.get(url) #Envia uma solicitação HTTP GET ao servidor
 
-#11-crie uma lista e adicione um item novo a ela utilizando a metodolofia LIFO
+if resposta.status_code == 200: # Se obter código 200 (êxito), obtém dados
+    dados = resposta.json()
+else:
+    print(f"Erro: {resposta.status_code}") # Se obtém outro código, exibe erro
+
+lista_pessoas = []
+for person in dados:
+    name = person["name"]
+
+print()
+#10-crie uma lista e adicione um item novo a ela utilizando a metodologia FIFO (fila)
+
+#11-crie uma lista e adicione um item novo a ela utilizando a metodolofia LIFO (pilha)
 
 
 #DESAFIO!!
