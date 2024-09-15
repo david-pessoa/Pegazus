@@ -5,15 +5,19 @@ class Cliente(): # Classe cliente
         self.id = Cliente.__ultimoID
         self.nome = nome # Atributos: id, nome, CPF e saldo
         self.cpf = cpf
+        self.senha = ""
         self.saldo = 0 
     
-    def saque(self, dinheiro): 
+    def saque(self, dinheiro): # Realiza saque
         self.saldo -= dinheiro
     
-    def deposito(self, dinheiro):
+    def deposito(self, dinheiro): # Realiza depósito
         self.saldo += dinheiro
     
-    def getId(self):
+    def setSenha(self, senha): # Define senha
+        self.senha = senha
+    
+    def getId(self): # Getters dos demais atributos
         return self.id
     
     def getNome(self):
