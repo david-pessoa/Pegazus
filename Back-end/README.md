@@ -19,4 +19,4 @@ Utilizei esta solução, pois, primeiro necessitava obter os dados através da A
 ## Exercício 9
 Utilizei a mesma forma para obter os dados através da API pelos mesmos motivos citados no exercício anterior. Já para o parsing dos dados, decidi que a melhor forma seria guardar as pessoas e suas informações num dicionário, sendo a chave os nomes das pessoas. Poderia ter usado o ID, mas o enunciado não permitiu. As outras informações sobre cada pessoa ficaram numa lista, que constituía o valor da chave no dicionário. Preferi uma lista do que outro dicionário para melhorar a legibilidade do código e seu entendimento.
 
-## Desafio
+# Desafio
