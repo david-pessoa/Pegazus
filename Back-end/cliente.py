@@ -16,7 +16,7 @@ class Cliente(): # Classe cliente
     
     def setSenha(self, senha): # Define senha
         self.senha = senha
-    
+        
     def getId(self): # Getters dos demais atributos
         return self.id
     
@@ -25,6 +25,9 @@ class Cliente(): # Classe cliente
     
     def getCPF(self):
         return self.cpf
+
+    def getSenha(self, senha):
+        return self.senha
     
     def getSaldo(self):
         return self.saldo
