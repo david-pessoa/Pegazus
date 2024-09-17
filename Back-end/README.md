@@ -51,24 +51,24 @@ Inicialmente, é chamada a função tela_inicial(), em que é exibido o título 
 
 *OBS: Eu elaborei este código no MacOS, então é possível que ele apresente um comportamento diferente quando executado no Windows
 
----------------------------------IMAGEM DA TELA INICIAL-------------------------------
+<img width="841" alt="Tela Inicial" src="https://github.com/user-attachments/assets/2148947f-174b-4bba-a121-e719905b7e81">
 
 ### Tela de Cadastro
 A tela de cadastro possui textos e caixas de entrada solicitando a entrada de: nome, CPF e senha para a conta. Ao fim, possui o botão "Cadastrar" para finalizar o cadastro.
 
----------------------------------IMAGEM DA TELA DE CADASTRO-------------------------------
+<img width="844" alt="Tela de Cadastro" src="https://github.com/user-attachments/assets/2deba2bf-1ecb-4721-a061-d0cdf7e077f3">
 
 ### Tela de Mostar o Saldo
 A tela de mostrar o saldo inicialmente verifica se o cliente é um cliente que acabou de se cadastrar. Caso seja, salva as suas informações digitadas na tela de cadastro. Se a pessoa acabou de realizar um depósito, o valor do depósito é adicionado ao saldo do cliente. Depois disso, a tela é carregada, exibindo o título: "Bem vindo, {nome do cliente}". No centro da tela, é indicado o saldo atual do cliente e abaixo os botões com as opções de realizar saque ou depósito na conta.
 
----------------------------------IMAGEM DE TELA DE MOSTRA SALDO-------------------------------
+<img width="837" alt="Tela Mostra Saldo" src="https://github.com/user-attachments/assets/c5789ebb-0da2-4415-b54c-bafdd723c6d3">
 
 ### Tela para realizar saques
 A tela para realizar saques exibe uma entrada, para que o usuário digite o valor em reais que deseja sacar e um botão abaixo para confirmar o saque. Caso o valor do saque exceda o valor do saldo, é exibida uma mensagem de erro, exibindo o valor atual do saldo. Senão, o saque é realizado com sucesso e o usuário retorna para a tela de mostrar o saldo.
 
----------------------------------IMAGEM DE TELA DE SAQUES-------------------------------
+<img width="847" alt="Tela Saque" src="https://github.com/user-attachments/assets/3afcb9a5-a9e4-4a61-8871-8980ea10ea6e">
 
 ### Tela para realizar depósitos
 A tela para realizar depósitos exibe uma entrada, para que o usuário digite o valor em reais que deseja depositar e um botão abaixo para confirmar o depósito. Após realizar o depósito, o usuário retorna para a tela Mostra Saldo
 
----------------------------------IMAGEM DE TELA DE SAQUES-------------------------------
+<img width="847" alt="Tela deposito" src="https://github.com/user-attachments/assets/020e31fa-a3d3-47b9-b44f-75691fe4afc6">
