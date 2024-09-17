@@ -21,4 +21,29 @@ Utilizei a mesma forma para obter os dados através da API pelos mesmos motivos 
 
 # Desafio
 Este desafio foi feito utilizando dois arquivos: o `cliente.py`, contendo a classe `Cliente()` para criar objetos representando cada cliente cadastrado no sistema, e o `Desafio.py`, contendo o restante do código com os códigos de cada tela.
-## Classe Cliente
+
+## Classe `Cliente`
+### Atributos
+* `id`: contém o ID do cliente (int)
+* `nome`: contém o nome do cliente (string)
+* `cpf`: contém o CPF do cliente (string)
+* `senha`: contém a senha da conta do cliente (string)
+* `saldo`: contém o saldo inicial do cliente. Inicia com 0 (float)
+
+### Métodos
+* `saque()`: Parâmetro: `dinheiro` (float), Retorna vazio. Função: subtrai o valor de `dinheiro` do atributo `saldo`
+* `deposito()`: Parâmetro: `dinheiro` (float), Retorna vazio. Função: adiciona o valor de `dinheiro` do atributo `saldo`
+* `setSenha()`: Parâmetro: `senha` (string), Retorna vazio. Função: define o valor do atributo `senha` como o valor do parâmetro `senha`
+* `getId()`: Parâmetros: Nenhum, Retorna o valor do atributo `id`
+* `getNome()`: Parâmetros: Nenhum, Retorna o valor do atributo `nome`
+* `getCPF()`: Parâmetros: Nenhum, Retorna o valor do atributo `cpf`
+* `getSenha()`: Parâmetros: Nenhum, Retorna o valor do atributo `senha`
+* `getSaldo()`: Parâmetros: Nenhum, Retorna o valor do atributo `slado`
+
+## `Desafio.py`
+### Sobre as telas da interface gráfica
+Para realizar o desafio, utilizei o módulo tkinter do python para criar interfaces gráficas. As telas seguem um padrão: todas com fundo roxo, título da tela sempre em branco, demais textos em preto, botões em amarelo e, por fim, erros em vermelho. Como os botões são utilizados para direcionar o usuário de uma tela para outra, foi necessário representar cada tela por uma função, para que o argumento `command` do construtor da classe `Button` receba a essa função criada. Por exemplo, o botão "Cadastre-se" da tela inicial recebe em seu `command` a função `tela_cadastro()`. Também é importante destacar que a cada mudança de tela, a janela anterior criada é destruída pelo método `destroy()` da classe `Tk`, para que o usuário não fique com múltiplas janelas abertas. Pois, a cada mudança de tela na realidade, uma nova janela é criada.
+Quanto aos clientes, foi criada a variável global `cliente_logado` para armazenar o objeto do cliente logado na aplicação e o dicionário `clientes` para armazenar todos os clientes cadastrados. O dicionário contém como chave o `id` do cliente e como valor o objeto da classe `Cliente` com esse `id`.
+
+### Tela Inicial
+Inicialmente, é chamada a função tela_inicial(), em que é exibido o título "Banco do python"
