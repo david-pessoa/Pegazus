@@ -1,12 +1,12 @@
 class Cliente(): # Classe cliente
-    __ultimoID = 0
+    __ultimoID = 0 # Guarda o último ID salvo
     def __init__(self, nome, cpf, senha):
         Cliente.__ultimoID += 1
         self.id = Cliente.__ultimoID
         self.nome = nome # Atributos: id, nome, CPF e saldo
         self.cpf = cpf
         self.senha = senha
-        self.saldo = 1000.98 
+        self.saldo = 0
     
     def saque(self, dinheiro): # Realiza saque
         self.saldo -= dinheiro
