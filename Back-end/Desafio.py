@@ -148,28 +148,28 @@ def tela_mostra_saldo():
         clientes[cliente_logado.getId()] = cliente_logado
         is_new_client = False
     
-    if fez_deposito:
+    if fez_deposito: # Se o cliente acabou de fazer um depósito, atualiza saldo
         deposito = float(Deposito_input.get())
         cliente_logado.deposito(deposito)
         fez_deposito = False
 
-    window.destroy()
+    window.destroy() #Destrói janela anterior
     window = Tk() 
-    window.title("Banco do Python")
+    window.title("Banco do Python") # Recria nova janela
     window.config(padx= 10, pady= 10, bg= BACKGROUND_COLOR)
     canvas = Canvas(width= 800, height = 500)
 
-    canvas.config(bg= BACKGROUND_COLOR, highlightthickness= 0)
+    canvas.config(bg= BACKGROUND_COLOR, highlightthickness= 0) # Recria canvas
     canvas.grid(row= 0, column= 0)
-
+    # Coloca título na tela
     canvas.create_text(400, 61, fill= WHITE_COLOR, text= f"Bem vindo, {cliente_logado.getNome()}!", font= ("Arial", 60, "bold"))
-
-    canvas.create_text(400, 250, fill= YELLOW_COLOR, text= "Seu saldo: R$ %.2f" % cliente_logado.getSaldo(), font= ("Arial", 48, "bold"))
+    # Exibe saldo do cliente em preto
+    canvas.create_text(400, 250, fill= BLACK_COLOR, text= "Seu saldo: R$ %.2f" % cliente_logado.getSaldo(), font= ("Arial", 48, "bold"))
    
-
+    #Coloca botão para sacar dinheiro
     sacar = Button(canvas, text="Sacar", bg= YELLOW_COLOR, fg= BLACK_COLOR, font=("Arial", 30), highlightthickness= 0, command= tela_de_saques)
     sacar.place(x= 150, y= 450) # Verifique se aparece amarelo para você
-
+    # Coloca botão para depositar dinheiro
     depositar = Button(canvas, text="Depositar", bg= YELLOW_COLOR, fg= BLACK_COLOR, font=("Arial", 30), highlightthickness= 0, command= tela_de_depositos)
     depositar.place(x= 600, y= 450) # Verifique se aparece amarelo para você
 
@@ -177,25 +177,25 @@ def tela_mostra_saldo():
 
 def tela_de_saques():
     global window
-    global cliente_logado
+    global cliente_logado # chama variáveis globais
     global Saque_input
     global canvas
-    window.destroy()
+    window.destroy() # destrói janela anterior
     window = Tk() 
-    window.title("Banco do Python")
+    window.title("Banco do Python") #Recria janela
     window.config(padx= 10, pady= 10, bg= BACKGROUND_COLOR)
     canvas = Canvas(width= 800, height = 500)
 
-    canvas.config(bg= BACKGROUND_COLOR, highlightthickness= 0)
+    canvas.config(bg= BACKGROUND_COLOR, highlightthickness= 0) #Recria canvas
     canvas.grid(row= 0, column= 0)
-
-    canvas.create_text(400, 61, fill= WHITE_COLOR, text= f"Digite o valor a ser sacado", font= ("Arial", 60, "bold"))
+    # Coloca texto exigindo o valor a ser sacado
+    canvas.create_text(400, 61, fill= WHITE_COLOR, text= f"Digite o valor a ser sacado", font= ("Arial", 60, "bold")) 
 
     canvas.create_text(200, 250, fill= BLACK_COLOR, text= "R$", font= ("Arial", 48, "bold"))
-    Saque_input = Entry(width= 15, font= ("Arial", 48, "bold"))
+    Saque_input = Entry(width= 15, font= ("Arial", 48, "bold")) # Coloca input para colocar o valor do saque
     Saque_input.place(x= 300, y= 220)
    
-
+    # Coloca botão para realizar saque
     sacar = Button(canvas, text="Sacar", bg= YELLOW_COLOR, fg= BLACK_COLOR, font=("Arial", 30), highlightthickness= 0, command= verifica_saque)
     sacar.place(x= 150, y= 450) # Verifique se aparece amarelo para você
 
@@ -206,31 +206,31 @@ def tela_de_depositos():
     global window
     global cliente_logado
     global canvas
-    global fez_deposito
+    global fez_deposito # Chama variáveis globais
     global Deposito_input
-    window.destroy()
+    window.destroy() #Destrói jnbela
     window = Tk() 
-    window.title("Banco do Python")
+    window.title("Banco do Python") # Recria nova janela para depósitos
     window.config(padx= 10, pady= 10, bg= BACKGROUND_COLOR)
-    canvas = Canvas(width= 800, height = 500)
+    canvas = Canvas(width= 800, height = 500) # Recria canvas
 
     canvas.config(bg= BACKGROUND_COLOR, highlightthickness= 0)
     canvas.grid(row= 0, column= 0)
-
+    # Coloca texto solicitando o valor do depósito
     canvas.create_text(400, 61, fill= WHITE_COLOR, text= f"Digite o valor a ser depositado", font= ("Arial", 50, "bold"))
 
     canvas.create_text(200, 250, fill= BLACK_COLOR, text= "R$", font= ("Arial", 48, "bold"))
-    Deposito_input = Entry(width= 15, font= ("Arial", 48, "bold"))
+    Deposito_input = Entry(width= 15, font= ("Arial", 48, "bold")) #Coloca input para o valor do depósito
     Deposito_input.place(x= 300, y= 220)
    
-
+    # Coloca botão para realizar depósito
     sacar = Button(canvas, text="Depositar", bg= YELLOW_COLOR, fg= BLACK_COLOR, font=("Arial", 30), highlightthickness= 0, command= tela_mostra_saldo)
     sacar.place(x= 150, y= 450) # Verifique se aparece amarelo para você
 
-    fez_deposito = True
+    fez_deposito = True # Indica que cliente realizou o depósito
 
 
 
-window = Tk()
-tela_inicial()
-window.mainloop()
+window = Tk() # Cria variável global window para janela do Tk()
+tela_inicial() # Chama tela inicial
+window.mainloop() # Coloca em loop, para a interface gráfica não fechar
